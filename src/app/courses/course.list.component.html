@@ -28,6 +28,7 @@
       <td>{{course.price}}</td>
       <td>{{course.code | replace: "-" :""}}</td>
       <td>{{course.releaseDate | date:"yyyy/MM/dd"}}</td>
+      <td><a [routerLink]="['/courses/info/',course.id]" class="btn btn-primary">Edit</a></td>
 
     </tr>
   </tbody>

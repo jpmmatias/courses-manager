@@ -8,7 +8,16 @@ export class CourseServices{
   retrieveAll():Course[]{
     return Courses;
   }
+  retrieveByID(id:number):Course{
+    return Courses.filter(course => course.id === id)[0]
+  }
+
+  save(updatedCourse:Course):void{
+    Courses = Courses.map(course => course.id === updatedCourse.id ? updatedCourse : course)
+
+  }
 }
+
 let Courses: Course[] = [
   {
       id: 1,
