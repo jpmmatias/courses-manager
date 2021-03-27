@@ -13,11 +13,19 @@ export class CourseInfoComponent {
   constructor(private activateRoute: ActivatedRoute, private courseService:CourseServices) {}
 
   ngOnInit() {
-    this.courseId = parseInt(this.activateRoute.snapshot.paramMap.get("id"))
-    this.courseInfo = this.courseService.retrieveByID(this.courseId)
+    this.retrieveCourse()
   }
 
-  save() {
-    this.courseService.save(this.courseInfo)
+  retrieveCourse():void{
+    this.courseId = parseInt(this.activateRoute.snapshot.paramMap.get("id"))
+    this.courseService.retrieveByID(this.courseId).subscribe({
+      next: (course:Course)=>{this.courseInfo = course},
+      error:err=>{console.log(err)}
+    })
+
+  }
+
+  save():void {
+    this.courseService.save(this.courseInfo).subscribe()
   }
 }
